@@ -3,12 +3,10 @@ def binary_search(start,end,n,answer):
         return answer
     mid=(start+end)//2
     sum=(mid*(mid+1))//2
-    if sum==n:
-        answer=mid
-        return answer
-    elif sum<n:
-        return binary_search(mid+1,end,n,mid)
-    elif sum>n:
-        return binary_search(start,mid-1,n,answer)
+   
+    if sum>n:
+        return binary_search(start,mid-1,n,mid-1)
+    else:
+        return binary_search(mid+1,end,n,answer)
 n=int(input())
-print(binary_search(1,n,n,0))
+print(binary_search(0,n,n,1))
