@@ -1,3 +1,5 @@
+import sys
+input= sys.stdin.readline
 def move(num,start,arrive):
     temp_list=[]
     if num>1:
@@ -20,5 +22,3 @@ print(len(answer_list)//2)
 for i in range(len(answer_list)//2):
     print(answer_list[2*i],end=' ')
     print(answer_list[2*i+1])
-# for i in range(len(answer_list)):
-    # print(str(answer_list[i][0])+" "+str(answer_list[i][1]))
