@@ -1,65 +1,38 @@
-""" 
-< 와 > 가 k개(2 ≤ k ≤ 9) 순서열 A
-앞뒤에 한자릿수 숫자로 부등호 만족.
-k개 부등호 순서를 만족하는
-k+1자리의 정수중 최댓값과 최솟값 찾기.
+import sys
+input = sys.stdin.readline
 
-
-입력)
-첫 줄에 k (부등호 개수)
-둘째줄에 부등호 모양
-
-0<1 <2 <3 <4 <5 <6 <7 <8 <9
-
-1.맨 윗자리 할당.
-
-1-1.최댓값을 할 때.
-높은자리수 큰 수 우선
-넣을 때 다음 부등호를 봄
-부등호의 < 개수만큼 최댓값 감소
-그다음 >으로 바뀌는 곳에 최댓값
-반복
-ex)
-< < < > < < > < >   ->    6 <7 <8 < 9 >4 <5 >2 <3 >1 
-
-1-2.최솟값을 할 때.
-높은자리수 낮은 수 우선
-넣을 때 다음 부등호를 봄
-부등호의 >개수만큼 최소값 증가
-> < < < > > > < <    ->  1> 0 < 2<3 < 7>6 >5 >4 <8 <9
-
-"""
+k=int(input()) #부등호 개수
+mark = list(map(str, input().split())) # 부등호 입력받는거 ex < >
+ans = []
 visited=[]
-ans=[]
-n=int(input())
-sign_list=list(map(str, input().split()))
 
-def check(left, right, sign):
+#a는 왼쪽 숫자 b는 오른쪽숫자 c는 부등호
+def check(left,sign,right):
     if sign == '<':
-        return left < right
+        return left < right # 0 < 1 
     else:
         return left > right
     
-def back(count,temp):
-    if count==n+1:
+def back(count,temp_list):
+    if count == k+1: # 배열의 길이를 확인
         a=""
-        for i in temp:
+        for i in temp_list:
             a=a+str(i)
         ans.append(a)
         # ans.append(temp.copy())
         return
     
-    
-    for i in range(10):
-        if i not in visited:
-            if count == 0 or check(temp[-1],i,sign_list[count-1]):
-                visited.append(i)
-                temp.append(i)
-                back(count+1,temp)
+   
+
+    for i in range(10): # 0~9 까지 i=1
+        if i not in visited: # 중복 확인 x
+            if count==0 or check(temp_list[-1],mark[count-1],i): #  1,>,2 1>
+                visited.append(i) #[0,1]
+                temp_list.append(i) # [0,1]
+                back(count+1,temp_list) # 재귀
                 visited.pop()
-                temp.pop()
+                temp_list.pop()
 
 back(0,[])
-
-print(ans[-1])
-print(ans[0])
+print(ans[-1]) #가장 작은수 
+print(ans[0]) #가장 큰수 
