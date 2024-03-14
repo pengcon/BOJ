@@ -18,6 +18,6 @@ for _ in range(t):
     for i in range(2,n):
         for j in range(0,2):
             a=dp[1-j][i-1]+stickers[j][i]
-            b=max(dp[j][i-2],dp[1-j][i-2])+stickers[j][i]
+            b=dp[1-j][i-2]+stickers[j][i]
             dp[j][i]=max(a,b)
     print(max(dp[1][-1],dp[0][-1]))
