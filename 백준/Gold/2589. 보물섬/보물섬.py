@@ -1,4 +1,8 @@
 from collections import deque
+
+import sys
+input = sys.stdin.readline
+
 sero,garo=map(int,input().split())
 graph=[list(input().rstrip()) for i in range(sero)]
 
@@ -16,8 +20,7 @@ def bfs(x,y):
     max_count=0
     while q:
         cur=q.popleft()
-        
-        
+    
         # print(q)
         # print(cur)
         if max_count<cur[2]:
