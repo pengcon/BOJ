@@ -1,30 +1,30 @@
-dx=[-1,1,0,0]
-dy=[0,0,-1,1]
-def dfs(x,y):
-    if dp[x][y]!=0:
-        return dp[x][y]
-    for i in range(4):
-        nx=x+dx[i]
-        ny=y+dy[i]
-        
-        if 0<=nx<n and 0<=ny<n:
-            if graph[x][y] < graph[nx][ny]:
-                dp[x][y]=max(dp[x][y],dfs(nx,ny)+1)
-    return dp[x][y]
-    
-n= int(input())
+import sys
+input=sys.stdin.readline
+def panda(y, x):
 
-graph = [list(map(int,input().split())) for _ in range(n)]
+    # 방문했던 dp면 dp값 가져오기
+    if dp[y][x] != 0:
+        return dp[y][x]
 
-dp = [[0 for _ in range(n)]for _ in range(n)]
-#모든 점 방문
+    for dy, dx in [[0,-1],[1,0],[-1,0],[0,1]]:
+        ey = y + dy
+        ex = x + dx
 
-#방문한 뒤에 이동할 수 있는 모둔 경우의 수를 재귀로 구현
+        if 0 <= ey < n and 0 <= ex < n:
+            if graph[y][x] < graph[ey][ex]:
+                dp[y][x] = max(dp[y][x], panda(ey, ex) + 1)
 
-#재귀 구현 뒤 dp로 바꾼다.
+    return dp[y][x]    # 이동 불가하면 0
 
-for x in range(n):
-    for y in range(n):
-        dfs(x,y)
-# print(dp)
-print(max(map(max,dp))+1)
+n = int(input())    # 그래프의 크기
+
+graph = [list(map(int, input().split())) for _ in range(n)]
+
+dp = [[0 for _ in range(n)] for _ in range(n)]
+
+
+for y in range(n):
+    for x in range(n):
+        panda(y, x)
+
+print(max(map(max,dp)) + 1)
