@@ -13,14 +13,14 @@ while True:
         start=0 
         end=N-1 
 
-        # # end 구하기 
-        # while(start<=end):
-        #     mid=(start+end)//2 
-        #     #부등호는 생각해보기
-        #     if legos[mid]>=X:
-        #         end=mid-1
-        #     else:
-        #         start=mid+1
+        # end 구하기 
+        while(start<=end):
+            mid=(start+end)//2 
+            #부등호는 생각해보기
+            if legos[mid]>=X:
+                end=mid-1
+            else:
+                start=mid+1
         flag=True
         start=0
         while(start<end): 
