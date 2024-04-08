@@ -3,35 +3,56 @@ from itertools import permutations
 import sys
 input=sys.stdin.readline
 n=int(input())
-
-
-
-
-
+#최대 점수
 max_score=-1
-
-
+#타자가 기록할 결과 리스트
 batter=[list(map(int,input().split())) for _ in range(n)]
-
+#타자 순서를 정하기 위한 리스트
 entry=[i for i in range(1,9)]
 
 
+
+
+def attack(batting,b1,b2,b3,score,out_count):
+    if batting==0:
+        out_count+=1
+        
+    elif batting==1:
+        score +=b3
+        b1,b2,b3=1,b1,b2
+       
+    elif batting==2:
+        score+=b2+b3
+        b1,b2,b3=0,1,b1
+       
+    elif batting==3:
+        score+=b1+b2+b3
+        b1,b2,b3=0,0,1
+      
+    elif batting==4:
+        score+=b1+b2+b3+1
+        b1,b2,b3=0,0,0
+    return b1,b2,b3,score,out_count   
+
+
+def next_batter(next):
+    if next==8:
+        next=0
+    else:
+        next+=1
+    return next
+     
+
 for i in permutations(entry,8):
-    
-
+    #다음 타자
     next=0
-
     #스코어
     score=0
-
+    #4번타자를 슬라이싱으로 넣어주는 과정
     temp=list(i)
-    #4번타자 슬라이싱으로 넣어줌
     temp=temp[:3]+[0]+temp[3:]
 
 
-    # 다음 타자 순서 맞추기
-    # if next!=0:
-    #     temp=temp[next:]+temp[0:next]
     for j in range(n):
         #1루 주자
         b1=0
@@ -39,74 +60,15 @@ for i in permutations(entry,8):
         b2=0
         #3루 주자
         b3=0
-
+        #아웃 카운트
         out_count=0
-
+        #3아웃까지 타격
         while out_count<3:
-
-
-            if batter[j][temp[next]]==0:
-                out_count+=1
-            #1루타
-            if batter[j][temp[next]]==1:
-                score +=b3
-                b1,b2,b3=1,b1,b2
-                # if b3==1:
-                #     score+=1
-                #     b3=0
-                # if b2==1:
-                #     b2=0
-                #     b3=1
-                # if b1==1:
-                #     b2=1
-                #     b1=0
-                # b1=1
-            elif batter[j][temp[next]]==2:
-                score+=b2+b3
-                b1,b2,b3=0,1,b1
-                # if b3==1:
-                #     score+=1
-                #     b3=0
-                # if b2==1:
-                #     score+=1
-                #     b2=0
-                # if b1==1:
-                #     b3=1
-                #     b1=0
-                # b2=1
-            elif batter[j][temp[next]]==3:
-                score+=b1+b2+b3
-                b1,b2,b3=0,0,1
-                # if b3==1:
-                #     score+=1
-                #     b3=0
-                # if b2==1:
-                #     score+=1
-                #     b2=0
-                # if b1==1:
-                #     score+=1
-                #     b1=0
-                # b3=1
-            elif batter[j][temp[next]]==4:
-                score+=b1+b2+b3+1
-                b1,b2,b3=0,0,0
-                # if b3==1:
-                #     score+=1
-                #     b3=0
-                # if b2==1:
-                #     score+=1
-                #     b2=0
-                # if b1==1:
-                #     score+=1
-                #     b1=0
-                # score+=1
+            b1,b2,b3,score,out_count=attack(batter[j][temp[next]],b1,b2,b3,score,out_count)
+            
             #다음 타자 갱신
-            if next==8:
-                next=0
-            else:
-                next+=1
-
-                    
+            next=next_batter(next)
+    #최고점수 비교                 
     if max_score<score:
         max_score=score
 print(max_score)
