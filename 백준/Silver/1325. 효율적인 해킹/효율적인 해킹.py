@@ -11,10 +11,10 @@ for _ in range(M):
 
 
 def bfs(i):
-    visited=set()
+
     temp_max=0
     q=deque([i])
-    visited=[0]*(N+1)
+    visited = list(map(lambda x: 0, range(N+1)))
     visited[i]=1
     while q:
         node=q.popleft()
@@ -30,6 +30,6 @@ for i in range(1,N+1):
     ans.append(bfs(i))
 
 high=max(ans)
-for k in range(len(ans)):
+for k in range(N):
     if ans[k]==high:
         print(k+1,end=" ") 
