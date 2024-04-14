@@ -14,12 +14,13 @@ def bfs(i):
     visited=set()
     temp_max=0
     q=deque([i])
-    visited.add(i)
+    visited=[0]*(N+1)
+    visited[i]=1
     while q:
         node=q.popleft()
         for j in link[node]:
-            if j not in visited:
-                visited.add(j)
+            if not visited[j]:
+                visited[j] = 1
                 q.append(j)
                 temp_max+=1
     return temp_max
@@ -29,6 +30,6 @@ for i in range(1,N+1):
     ans.append(bfs(i))
 
 high=max(ans)
-for k in range(N):
+for k in range(len(ans)):
     if ans[k]==high:
         print(k+1,end=" ") 
