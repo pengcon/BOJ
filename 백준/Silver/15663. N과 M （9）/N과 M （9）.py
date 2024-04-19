@@ -1,3 +1,6 @@
+import sys
+input=sys.stdin.readline
+print=sys.stdout.write
 n, m = map(int, input().split())
 nums = sorted(list(map(int, input().split())))
 #딕셔너리 활용
@@ -11,7 +14,9 @@ temp = []
 visited=[]
 def dfs(idx):
     if len(temp) == m:
-        print(*temp)
+        for a in temp:
+            print(str(a)+' ')
+        print('\n')
 
         return
     for i in nd.keys():
