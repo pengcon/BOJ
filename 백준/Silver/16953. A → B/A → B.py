@@ -1,12 +1,7 @@
 from collections import deque
 A,B=map(int,input().split())
 ans=1e9
-def plus_one(cur):
-    temp=""
-    for i in str(cur):
-        temp=temp+i
-    temp=temp+'1'
-    return int(temp)
+ 
 q=deque()
 q.append((A,1))
 
@@ -14,8 +9,9 @@ while q:
     cur,count=q.popleft()
     if cur == B:
         ans=min(ans,count)
+        break
     #오른쪽에 1을 추가하기 위함
-    temp=plus_one(cur)
+    temp=cur*10+1
     if temp<=B:
         q.append((temp,count+1))
     #2를 곱해줌
