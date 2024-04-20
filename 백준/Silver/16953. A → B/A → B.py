@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input=sys.stdin.readline
 A,B=map(int,input().split())
 ans=1e9
  
