@@ -13,12 +13,13 @@ while q:
         ans=min(ans,count)
         break
     #오른쪽에 1을 추가하기 위함
-    temp=cur*10+1
-    if temp<=B:
-        q.append((temp,count+1))
+    temp1=cur*10+1
+    temp2=cur*2
+    if temp1<=B:
+        q.append((temp1,count+1))
     #2를 곱해줌
-    if cur*2<=B:
-        q.append((cur*2,count+1))
+    if temp2<=B:
+        q.append((temp2,count+1))
 if ans==1e9:
     print(-1)
 else:
