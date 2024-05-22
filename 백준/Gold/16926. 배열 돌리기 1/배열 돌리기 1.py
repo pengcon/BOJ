@@ -25,8 +25,8 @@ while (x_max > x_min and y_max >y_min):
     #왼쪽 배열
     for l in range(x_max-1,x_min,-1):
         temp.append(nums[l][y_min])
-
-    temp.rotate(-R)
+    for m in range(R):
+        temp.rotate(-1)
 
     #위 배열
     for i in range(y_min,y_max+1):
