@@ -1,7 +1,6 @@
 def solution(n):
     answer = 0
     #완탐
-    
     #1부터 n까지
     for i in range(1,n+1):
         hap=0
