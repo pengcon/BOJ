@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+string = input()
+ans = 0
+for term in range(len(string)+1):
+	for start in range(len(string) + 1 - term):
+		temp = string[start : start + term]	
+		if temp == temp[::-1]:
+			ans = max(ans,term)
+print(ans)
