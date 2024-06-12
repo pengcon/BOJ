@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+from collections import deque
+n,m = map(int, input().split())
+l = list(map(int, input().split()))
+suyeol = deque(l)
+for i in range(m):
+	suyeol.rotate(-1*suyeol[0])
+print(suyeol[0])
