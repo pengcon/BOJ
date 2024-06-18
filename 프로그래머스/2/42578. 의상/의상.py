@@ -11,5 +11,5 @@ def solution(clothes):
         answer = answer * (wear[i]+1) 
     
     
-    
-    return answer-1
+    answer -= 1
+    return answer
