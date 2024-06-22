@@ -19,21 +19,21 @@ fun main() = with(System.`in`.bufferedReader()){
     foreignList[0][4] = rank
     for (i in (0..<foreignList.size-1)){
         if (foreignList[i][1] > foreignList[i+1][1]){
-            rank += 1
-            foreignList[i+1][4] = rank + temp
+            rank += 1 + temp
+            foreignList[i+1][4] = rank
             temp = 0
         }
         else if (foreignList[i][1] == foreignList[i+1][1]){
             if (foreignList[i][2] > foreignList[i+1][2]) {
-                rank += 1
-                foreignList[i+1][4] = rank + temp
+                rank += 1 + temp
+                foreignList[i+1][4] = rank
                 temp = 0
 
             }
             else if (foreignList[i][2] == foreignList[i+1][2]){
                 if (foreignList[i][3] > foreignList[i+1][3]){
-                    rank += 1
-                    foreignList[i+1][4] = rank + temp
+                    rank += 1 + temp
+                    foreignList[i+1][4] = rank
                     temp = 0
                 }
                 else if (foreignList[i][3] == foreignList[i+1][3]){
@@ -48,4 +48,10 @@ fun main() = with(System.`in`.bufferedReader()){
             println(foreignList[i][4])
         }
     }
+//    for (item in foreignList){
+//        for (i in item){
+//            print(i)
+//        }
+//        println("")
+//    }
 }
