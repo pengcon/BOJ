@@ -2,13 +2,8 @@ import java.io.*
 fun main() = with(System.`in`.bufferedReader()) {
     val (h,w) = readLine().split(" ").map{it.toInt()}
     val arr = Array(h) { IntArray(w) { -1 } }
-    val cloud = Array(h) {Array<Char>(w) {'.'} }
-    for (i in 0..<h){
-        val input = readLine()
-        for (j in 0..<w){
-            cloud[i][j] = input[j]
-        }
-    }
+    val cloud = Array(h) {readLine()}
+
 
     for (i in 0..<h){
         var day = -1
