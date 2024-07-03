@@ -2,11 +2,11 @@ import java.util.Scanner
 fun main(args: Array<String>) = with(System.`in`.bufferedReader()) {
     val n = readLine().toInt()
     val m = readLine().toInt()
-    val input = readLine().split("")
-    val downAlphabets = ArrayList<Char>()
-    for (i in 1..n){
-        downAlphabets.add(input[i][0])
+    val alphabets = StringBuilder()
+    for (num in 0..<n){
+        alphabets.append((65+num).toChar())
     }
+    val downAlphabets = StringBuilder(readLine())
     var hidden = -1
     val arr = ArrayList<String>()
     for (i in 0..<m){
@@ -14,10 +14,6 @@ fun main(args: Array<String>) = with(System.`in`.bufferedReader()) {
         if (line[0] == '?')
             hidden = i
         arr.add(line)
-    }
-    val alphabets = ArrayList<Char>()
-    for (num in 0..<n){
-        alphabets.add((65+num).toChar())
     }
 
     //위에서 아래로
@@ -45,7 +41,7 @@ fun main(args: Array<String>) = with(System.`in`.bufferedReader()) {
         } else answer.add('*')
 
     }
-    if (alphabets == downAlphabets) {
+    if (alphabets.toString() == downAlphabets.toString()) {
         answer.forEach { print(it) }
     }
     else {
@@ -53,4 +49,5 @@ fun main(args: Array<String>) = with(System.`in`.bufferedReader()) {
             print('x')
         }
     }
+
 }
