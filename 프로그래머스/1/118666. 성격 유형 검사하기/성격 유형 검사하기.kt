@@ -1,12 +1,12 @@
 class Solution {
     fun question(maps : HashMap<Char,Int>, category : String, score : Int){
         when(score){
-            1 -> maps[category[0]] = maps.getOrDefault(category[0], 0) + 3
-            2 -> maps[category[0]] = maps.getOrDefault(category[0], 0) + 2
-            3 -> maps[category[0]] = maps.getOrDefault(category[0], 0) + 1
-            5 -> maps[category[1]] = maps.getOrDefault(category[1], 0) + 1
-            6 -> maps[category[1]] = maps.getOrDefault(category[1], 0) + 2
-            7 -> maps[category[1]] = maps.getOrDefault(category[1], 0) + 3
+            1 -> maps[category[0]] = maps[category[0]]!! + 3
+            2 -> maps[category[0]] = maps[category[0]]!! + 2
+            3 -> maps[category[0]] = maps[category[0]]!! + 1
+            5 -> maps[category[1]] = maps[category[1]]!! + 1
+            6 -> maps[category[1]] = maps[category[1]]!! + 2
+            7 -> maps[category[1]] = maps[category[1]]!! + 3
         }
     }
     fun solution(survey: Array<String>, choices: IntArray): String {
