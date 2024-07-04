@@ -30,16 +30,13 @@ class Solution {
         yMap[yc] = yMap[yc]!! + 1 
     } 
     var tempAns = ArrayList<Int>()
-    var flag = true
     for (key in xMap.keys){
         // print("${key}, ${xMap[key]}, ${yMap[key]} ")
         var count = 0
         if (xMap[key]!! > yMap[key]!!){
             count = yMap[key]!!
         } else count = xMap[key]!!
-        if (key != '0' && count > 0){
-            flag = false
-        }
+
         for (i in 1..count){
             tempAns.add(key.toString().toInt())
         }
@@ -50,10 +47,9 @@ class Solution {
     if (answer == ""){
         answer = "-1"
     }
-    else if (flag){
+    else if (answer[0] == '0'){
         answer = "0"
-        
-    } else answer = answer.toString()
+    } 
     return answer
     }
 
