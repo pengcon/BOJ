@@ -1,20 +1,34 @@
+
 import java.util.Scanner
-
-fun main(args: Array<String>) {
-    val sc = Scanner(System.`in`)
-
-    while (sc.hasNext()) {
-        val N = sc.nextInt()
-        var result = "-"
-
-        repeat(N) {
-            result = cantor(result)
-        }
-
-        println(result)
+import kotlin.math.*
+fun divide(n:Int) : String{
+    if (n <= 1 ){
+        return "-"
     }
-}
+    val st = StringBuilder()
+    val div = (n / 3)
+    val left= divide(div)
+    val middle = StringBuilder()
+    repeat(div){
+        middle.append(" ")
+    }
+    st.append(left)
+    st.append(middle)
+    st.append(left)
+    return st.toString()
 
-private fun cantor(str: String): String {
-    return str + " ".repeat(str.length) + str
+}
+fun main(args: Array<String>) = with(System.`in`.bufferedReader()) {
+
+    try {
+        while(true) {
+            val n = readLine().toInt()
+            println(divide(3.toDouble().pow(n).toInt()))
+        }
+    } catch (e: Exception) {
+        close()
+        return@with
+    }
+
+
 }
