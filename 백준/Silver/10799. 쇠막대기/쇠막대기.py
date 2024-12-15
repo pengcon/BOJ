@@ -1,7 +1,4 @@
-from collections import deque
-
-dq = deque()
-
+dq =[]
 st = input()
 
 ans = 0
