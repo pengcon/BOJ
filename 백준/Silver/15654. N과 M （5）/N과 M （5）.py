@@ -1,16 +1,16 @@
-def recur(number,output):
-    if number == M:
-        print(output)
+n,m = map(int,input().split())
+
+lst=list(map(int,input().split()))
+lst.sort()
+ans=[]
+
+def back(cnt):
+    if cnt == m:
+        print(*ans)
         return
-    
-    for i in N_list:
-        if i not in arr:
-            arr.append(i)
-            recur(number+1,output+str(i)+" ")
-            arr.pop()
-            
-N,M=map(int,input().split())
-N_list=list(map(int,input().split()))
-N_list.sort()
-arr=[]
-recur(0,"")
+    for i in lst:
+        if i not in ans:
+            ans.append(i)
+            back(cnt+1)
+            ans.pop()
+back(0)
