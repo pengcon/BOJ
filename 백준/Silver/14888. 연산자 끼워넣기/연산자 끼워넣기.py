@@ -1,23 +1,6 @@
 n=int(input())
 nums = list(map(int,input().split()))
 lst = list(map(int,input().split()))
-giho = []
-
-for i in range(lst[0]):
-    giho.append('+')
-
-for i in range(lst[1]):
-    giho.append('-')
-
-
-for i in range(lst[2]):
-    giho.append('*')
-
-
-for i in range(lst[3]):
-    giho.append('/')
-
-visited = []
 
 max_ans = -2e9
 min_ans = 2e9
@@ -28,18 +11,18 @@ def back(temp,cnt):
         max_ans = max(temp, max_ans)
         min_ans = min(temp, min_ans)
         return 
-    for i in range(n-1):
-        if i not in visited:
-            visited.append(i)
-            if giho[i]== '-':
-                back(temp-nums[cnt+1],cnt+1)
-            elif giho[i] == '+':
+    for i in range(4):
+        if lst[i]>0:
+            lst[i]-=1
+            if i == 0:
                 back(temp+nums[cnt+1],cnt+1)
-            elif giho[i] == '*':
+            elif i == 1:
+                back(temp-nums[cnt+1],cnt+1)
+            elif i == 2:
                 back(temp*nums[cnt+1],cnt+1)
-            elif giho[i] == '/':
+            elif i == 3:
                 back(int(temp/nums[cnt+1]),cnt+1)
-            visited.pop()
+            lst[i]+=1
 back(nums[0],0)
 print(max_ans)
 print(min_ans)
