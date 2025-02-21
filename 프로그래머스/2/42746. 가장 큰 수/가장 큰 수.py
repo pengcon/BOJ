@@ -5,6 +5,6 @@ def solution(numbers):
     for i in numbers:
         answer += i
     if int(numbers[0]) == 0:
-        return "0"
+        return '0'
     else:
         return answer
